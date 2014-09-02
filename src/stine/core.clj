@@ -11,13 +11,12 @@
   (sin-wave x 0 0.1 2 0.1))
 
 (defn saw-tooth-note [freq]
-  (loop [note freq]
-    (tuning-note note)
-    (if (< freq 20000)
-      (recur (* note 1.36))
-      (println "whut"))))
-
-(saw-tooth-note 5.5)
+  (loop [note freq
+         mult 1]
+    (tuning-note (* note mult))
+    (if (< mult 20)
+      (recur note (* mult 2)))))
+(saw-tooth-note 55)
 
 (ot/stop)
 (tuning-note 440)
